@@ -1,0 +1,127 @@
+.navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: var(--white);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+.navbar .left-nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar .left-nav .logo{
+    font-size: 1rem;
+    font-family: var(--play-fair);
+    color: var(--black);
+}
+.navbar .center-nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.center-nav ul{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+.center-nav ul a{
+    text-decoration: none;
+    color: var(--text);
+    font-family: var(--inter);
+    font-weight: 400;
+    font-size: .9rem;
+    transition: all .5s ease;
+}
+.center-nav ul a:hover{
+    color: var(--blush);
+}
+.navbar .right-nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.right-nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.3rem;
+}
+.right-nav ul a{
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 400;
+    font-size: 1rem;
+    transition: all .5s ease;
+}
+.right-nav ul a:hover{
+    color: var(--blush);
+}
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.mobile-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  margin: 0;
+}
+
+.mobile-links li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-links a {
+  text-decoration: none;
+  color: #222;
+  font-size: 1.1rem;
+}
+
+.mobile-icons{
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+.mobile-icons {
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-icons a{
+  color: #222;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .navbar .right-nav {
+    display: none;
+  }
+  .navbar .center-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}

@@ -1,0 +1,120 @@
+.hero-page {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  padding: 4rem;
+  background-image: url("../../assets/hero-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 70% top;
+}
+.hero-page .hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeIn 2s ease;
+}
+.hero-text .hero-main-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.hero-main-text p {
+  text-transform: uppercase;
+  font-family: var(--inter);
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: .2rem;
+}
+.hero-main-text h1 {
+  text-transform: capitalize;
+  font-family: var(--play-fair);
+  font-size: 3.4rem;
+  color: var(--black);
+}
+.hero-text span {
+  font-family: var(--inter);
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.7rem;
+}
+.hero-text button {
+  background-color: var(--black);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--white);
+  padding: 0.9rem;
+  width: 50%;
+  font-weight: 500;
+  font-size: 1rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.hero-text button:hover {
+  background-color: var(--blush);
+  color: var(--black);
+}
+
+@media (max-width: 1024px) {
+  .hero-page {
+    padding: 3rem;
+    background-position: 65% top;
+  }
+  .hero-main-text h1 {
+    font-size: 2.8rem;
+  }
+  .hero-text button {
+    width: 60%;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .hero-page {
+    padding: 2.5rem;
+    background-position: 60% top;
+  }
+  .hero-main-text h1 {
+    font-size: 2.2rem;
+  }
+  .hero-text span {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+  .hero-text button {
+    width: 70%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .hero-page {
+    height: 100vh;
+    padding: 1.5rem;
+    background-position: 55% top;
+  }
+  .hero-main-text h1 {
+    font-size: 1.8rem;
+  }
+  .hero-main-text p {
+    font-size: 0.85rem;
+  }
+  .hero-text span {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+  }
+  .hero-text button {
+    width: 90%;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+}
