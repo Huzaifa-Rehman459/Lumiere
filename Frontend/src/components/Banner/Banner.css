@@ -8,7 +8,7 @@
   height: 100%;
   width: 100%;
   padding: 2rem;
-  background-image: url("../../assets/hero-bg.png");
+  background-image: url("../../assets/banner-bg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -102,7 +102,7 @@
   .ad-banner {
     padding: 1.2rem;
     background-position: center;
-    align-items: flex-end;       /* push text to bottom */
+    align-items: flex-end; 
     justify-content: flex-start;
   }
   .ad-banner-text {

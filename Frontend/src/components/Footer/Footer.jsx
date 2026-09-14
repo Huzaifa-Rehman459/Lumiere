@@ -13,16 +13,16 @@ const Footer = () => {
         <div className="footer-links">
             <ul>
                 <Link to="/">Home</Link>
-                <Link to="">Shop</Link>
-                <Link to="">About</Link>
-                <Link to="">Contact</Link>
+                <Link to="/ShopAll">Shop</Link>
+                <Link to="/About">About</Link>
+                <Link to="/Contact">Contact</Link>
             </ul>
         </div>
         <div className="footer-social-links">
             <ul>
           <Link to=""><Search /></Link>
-          <Link to=""><Heart /></Link>
-          <Link to=""><ShoppingBag /></Link>
+          <Link to="/Wishlist"><Heart /></Link>
+          <Link to="/Cart"><ShoppingBag /></Link>
           <Link to="/Login"><UserRound /></Link>
         </ul>
         </div>
