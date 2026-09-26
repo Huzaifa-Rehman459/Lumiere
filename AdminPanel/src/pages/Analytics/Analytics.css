@@ -1,0 +1,32 @@
+.analytics-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+  margin-bottom: 15px;
+}
+.analytics-line {
+  display: grid;
+  grid-template-columns: 90px 1fr 20px;
+  gap: 10px;
+  align-items: center;
+  margin: 14px 0;
+}
+.analytics-line > div {
+  height: 7px;
+  background: #f3eeea;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.analytics-line i {
+  display: block;
+  height: 100%;
+  background: #d99c91;
+}
+.analytics-line b {
+  font-size: 10px;
+}
+@media (max-width: 1200px) {
+  .analytics-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,39 @@
+.page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.page-eyebrow {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #ad887e;
+  font-weight: 700;
+}
+.page-heading h1 {
+  font:
+    500 29px "Playfair Display",
+    serif;
+  color: var(--ink);
+  margin: 8px 0 5px;
+}
+.page-heading p {
+  margin: 0;
+  color: var(--muted);
+}
+.page-date {
+  color: #8d7f76;
+  font-size: 11px;
+}
+@media (max-width: 640px) {
+  .page-heading h1 {
+    font-size: 25px;
+  }
+  .page-heading p {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .page-date {
+    display: none;
+  }
+}

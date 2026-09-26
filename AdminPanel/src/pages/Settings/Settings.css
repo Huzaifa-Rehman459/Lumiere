@@ -1,0 +1,37 @@
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.settings-grid label {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #625a54;
+}
+.settings-grid input,
+.settings-grid select {
+  width: 100%;
+  border: 1px solid #e3dcd6;
+  border-radius: 5px;
+  padding: 10px;
+  outline: 0;
+  background: #fff;
+}
+.settings-notice {
+  background: #faf1ec;
+  padding: 10px;
+  border-radius: 5px;
+}
+.settings-grid hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 18px 0;
+}
+@media (max-width: 640px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}

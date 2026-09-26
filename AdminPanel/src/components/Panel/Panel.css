@@ -1,0 +1,23 @@
+.panel {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 19px;
+  min-width: 0;
+}
+.panel h2 {
+  font:
+    500 20px "Playfair Display",
+    serif;
+  color: var(--ink);
+  margin: 0 0 5px;
+}
+.panel p {
+  color: #8c847e;
+  font-size: 10px;
+}
+@media (max-width: 640px) {
+  .panel {
+    padding: 14px 11px;
+  }
+}

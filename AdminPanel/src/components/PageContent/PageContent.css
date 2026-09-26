@@ -1,0 +1,15 @@
+.page-content {
+  padding: 26px 27px 34px;
+  max-width: 1800px;
+  margin: auto;
+}
+@media (max-width: 1200px) {
+  .page-content {
+    padding: 22px 18px;
+  }
+}
+@media (max-width: 640px) {
+  .page-content {
+    padding: 19px 11px 24px;
+  }
+}

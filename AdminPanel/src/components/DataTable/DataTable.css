@@ -1,0 +1,30 @@
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+  font-size: 10px;
+}
+.data-table th {
+  text-align: left;
+  background: #faf8f6;
+  color: #8a8179;
+  font-size: 9px;
+  padding: 11px;
+  border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 11px;
+  border-bottom: 1px solid #f1eeeb;
+  color: #615b56;
+}
+.data-table td b {
+  color: #302b27;
+}
+.empty-row {
+  text-align: center;
+  padding: 25px !important;
+}

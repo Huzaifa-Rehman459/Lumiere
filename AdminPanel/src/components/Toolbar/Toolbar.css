@@ -1,0 +1,43 @@
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: #8b827a;
+}
+.table-toolbar > div {
+  display: flex;
+  gap: 8px;
+}
+.btn {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 9px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-primary {
+  background: #191919;
+  color: #fff;
+}
+.btn-light {
+  background: #fff;
+  border-color: #e5ded8;
+  color: #5d554e;
+}
+@media (max-width: 640px) {
+  .table-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .table-toolbar > div {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

@@ -10,18 +10,26 @@ function ShopAllCard({ id, image, name, price }) {
   const navigate = useNavigate();
   const liked = isWishlisted(id);
 
-  const handleAddToCart = () => {
+  const goToProduct = () => navigate(`/product/${id}`);
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
     addToCart({ id, image, name, price });
     navigate("/cart");
   };
 
+  const handleToggleWishlist = (e) => {
+    e.stopPropagation();
+    toggleWishlist({ id, image, name, price });
+  };
+
   return (
-    <div className="shopAll-card">
+    <div className="shopAll-card" onClick={goToProduct}>
       <div className="card-image">
         <img src={image} alt={name} />
         <button
           className={`heart-btn ${liked ? "active" : ""}`}
-          onClick={() => toggleWishlist({ id, image, name, price })}
+          onClick={handleToggleWishlist}
         >
           <Heart fill={liked ? "currentColor" : "none"} />
         </button>

@@ -14,7 +14,7 @@ const BestSeller = () => {
       </div>
       <div className="seller-cards">
         {bestSeller.map((item) => (
-        <ProductCard key={item.id} image={item.image} name={item.name} price={item.price} oldPrice={item.oldPrice} />
+        <ProductCard key={item.id} id={item.id} image={item.image} name={item.name} price={item.price} oldPrice={item.oldPrice} />
       ))}
       </div>
     </div>

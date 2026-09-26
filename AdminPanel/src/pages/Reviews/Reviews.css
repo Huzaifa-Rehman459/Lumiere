@@ -1,0 +1,19 @@
+.list-search {
+  margin-bottom: 12px;
+}
+.list-search input {
+  width: min(330px, 100%);
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+.review-card {
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+.review-card p {
+  margin: 8px 0;
+}
+.review-stars {
+  color: #d2a04d;
+}

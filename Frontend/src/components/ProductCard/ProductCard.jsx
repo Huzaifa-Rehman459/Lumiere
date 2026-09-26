@@ -1,18 +1,26 @@
 // components/ProductCard.jsx
-import { useState } from "react";
 import { Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useWishlist } from "../../context/WishlistContext";
 import "./ProductCard.css"
 
-function ProductCard({ image, name, price, oldPrice }) {
-  const [liked, setLiked] = useState(false);
+function ProductCard({ id, image, name, price, oldPrice }) {
+  const navigate = useNavigate();
+  const { isWishlisted, toggleWishlist } = useWishlist();
+  const liked = isWishlisted(id);
+
+  const handleToggleWishlist = (e) => {
+    e.stopPropagation();
+    toggleWishlist({ id, image, name, price });
+  };
 
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={() => navigate(`/product/${id}`)}>
       <div className="card-image">
         <img src={image} alt={name} />
         <button
           className={`heart-btn ${liked ? "active" : ""}`}
-          onClick={() => setLiked(!liked)}
+          onClick={handleToggleWishlist}
         >
           <Heart fill={liked ? "currentColor" : "none"} />
         </button>

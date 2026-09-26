@@ -1,0 +1,27 @@
+.admin-shell {
+  min-height: 100vh;
+}
+.admin-main {
+  margin-left: 230px;
+  min-width: 0;
+}
+.admin-footer {
+  border-top: 1px solid var(--border);
+  padding: 16px 27px;
+  color: #9b928b;
+  font-size: 9px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+@media (max-width: 950px) {
+  .admin-main {
+    margin-left: 0;
+  }
+}
+@media (max-width: 640px) {
+  .admin-footer {
+    padding: 13px 11px;
+    flex-wrap: wrap;
+  }
+}

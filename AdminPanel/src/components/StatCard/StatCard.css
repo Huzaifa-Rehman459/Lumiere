@@ -1,0 +1,67 @@
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 17px 15px;
+  min-width: 0;
+}
+.stat-icon {
+  width: 41px;
+  height: 41px;
+  border-radius: 9px;
+  background: var(--soft);
+  color: #a9665b;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.stat-card > div {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.stat-card small {
+  color: #77706a;
+  font-size: 10px;
+}
+.stat-card strong {
+  font:
+    24px "Playfair Display",
+    serif;
+  overflow-wrap: anywhere;
+}
+.stat-card em {
+  font-style: normal;
+  color: #19834c;
+  font-size: 10px;
+}
+.stat-card i {
+  font-style: normal;
+  color: #9a918a;
+}
+@media (max-width: 1200px) {
+  .stat-card {
+    padding: 13px 10px;
+    gap: 9px;
+  }
+  .stat-card strong {
+    font-size: 21px;
+  }
+}
+@media (max-width: 640px) {
+  .stat-card {
+    display: block;
+    padding: 11px;
+  }
+  .stat-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 9px;
+  }
+  .stat-card strong {
+    font-size: 19px;
+  }
+}

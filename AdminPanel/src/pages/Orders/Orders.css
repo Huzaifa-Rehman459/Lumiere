@@ -1,0 +1,17 @@
+.list-search {
+  margin-bottom: 12px;
+}
+.list-search input {
+  width: min(330px, 100%);
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  outline: 0;
+}
+.order-status {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 5px;
+  background: #fff;
+  font-size: 10px;
+}
