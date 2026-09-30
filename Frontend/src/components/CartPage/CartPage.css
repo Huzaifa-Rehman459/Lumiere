@@ -5,6 +5,52 @@
   max-width: 900px;
   margin: 0 auto;
 }
+.cart-status {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.cart-notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff4e5;
+  border: 1px solid #f0c36d;
+  color: #8a5a00;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+.cart-notice button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.cart-item-variant {
+  color: #777;
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+.cart-item-warning {
+  color: #c0392b;
+  font-size: 0.85rem;
+  margin: 4px 0;
+}
+
+.quantity-control button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.checkout-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 .back-link {
   display: flex;

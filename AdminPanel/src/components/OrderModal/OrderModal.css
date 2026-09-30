@@ -1,0 +1,81 @@
+.entity-modal.order-modal {
+  width: min(600px, 100%);
+}
+.order-modal h3 {
+  margin: 16px 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #948a83;
+}
+.order-modal p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.order-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #827a73;
+}
+.order-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.order-items {
+  display: grid;
+  gap: 10px;
+}
+.order-item {
+  display: grid;
+  grid-template-columns: 44px 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+}
+.order-item img,
+.order-item-noimg {
+  width: 44px;
+  height: 44px;
+  border-radius: 5px;
+  object-fit: cover;
+  background: #f7f1ee;
+  display: block;
+}
+.order-item-info {
+  display: grid;
+  gap: 2px;
+}
+.order-item-info small {
+  color: #948a83;
+}
+.order-totals {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+}
+.order-totals > div {
+  display: flex;
+  justify-content: space-between;
+}
+.order-totals-final {
+  font-weight: 700;
+  font-size: 14px;
+}
+@media (max-width: 560px) {
+  .order-cols {
+    grid-template-columns: 1fr;
+  }
+  .order-item {
+    grid-template-columns: 44px 1fr auto;
+  }
+  .order-item > span {
+    display: none;
+  }
+}

@@ -12,8 +12,6 @@ const formatUser = (user) => ({
   role: user.role,
 });
 
-// Shared by setup and create-admin: validates input and creates an admin user.
-// Returns { error: {status, message} } or { user }.
 async function createAdminUser({ fullName, email, password }) {
   if (!fullName || !email || !password) {
     return { error: { status: 400, message: "Name, email and password are required" } };

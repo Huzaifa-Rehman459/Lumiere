@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const cartModel = require("../models/cartModel");
 const productModel = require("../models/productModel");
 
-const MAX_QTY = 10;              // max per cart line
-const FREE_SHIPPING_MIN = 50;    // your design: "Free shipping on orders over $50"
-const SHIPPING_FEE = 5;          // my assumption, change to your real fee
+const MAX_QTY = 10;
+const FREE_SHIPPING_MIN = 50;
+const SHIPPING_FEE = 5;
 
 // Money is calculated in cents, because JavaScript decimals drift:
 // 0.1 + 0.2 = 0.30000000000000004. Whole numbers don't.
@@ -42,7 +42,7 @@ function checkVariant(product, size, color) {
       return { error: `Choose a size: ${product.sizes.join(", ")}` };
     }
     chosenSize = size;
-  } // no sizes on the product (e.g. a handbag): anything sent is ignored
+  }
 
   let chosenColor = null;
   if (product.colors.length) {
@@ -68,8 +68,6 @@ function parseQuantity(value) {
   return value;
 }
 
-// Loads current product data, drops items whose product was deleted,
-// and calculates all money on the server.
 async function buildCartView(cart) {
   const empty = { items: [], itemCount: 0, subtotal: 0, shipping: 0, total: 0 };
   if (!cart) return { cart: empty, removedItems: 0 };

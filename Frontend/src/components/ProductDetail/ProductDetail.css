@@ -10,6 +10,50 @@
   box-sizing: border-box;
 }
 
+.pd-status {
+  text-align: center;
+  padding: 80px 20px;
+  color: #666;
+}
+.pd-status--error {
+  color: #c0392b;
+}
+
+.pd-thumbnails {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+.pd-thumbnail {
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+}
+.pd-thumbnail.is-active {
+  border-color: #222;
+}
+.pd-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pd-add-to-cart:disabled,
+.pd-qty button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pd-cart-error {
+  color: #c0392b;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
 /* ---------- Product section ---------- */
 .pd-product {
   max-width: 1120px;

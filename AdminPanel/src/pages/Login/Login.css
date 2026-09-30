@@ -89,6 +89,24 @@
     serif;
   color: #fff;
 }
+.login-error {
+  color: #c0392b;
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+.login-notice {
+  background: #fff4e5;
+  border: 1px solid #f0c36d;
+  color: #8a5a00;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+.login-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 @media (max-width: 640px) {
   .login-page {
     grid-template-columns: 1fr;

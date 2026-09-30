@@ -28,3 +28,27 @@ button {
 a {
   color: inherit;
 }
+.page-status {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--muted);
+}
+.page-status--error {
+  color: #b64c40;
+}
+.page-status .btn {
+  margin-left: 10px;
+}
+.table-pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px 0 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.table-pager .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

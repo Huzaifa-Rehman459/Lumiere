@@ -3,7 +3,15 @@ import ShopAllCard from "../ShopAllCard/ShopAllCard";
 import "./WishlistPage.css";
 
 const WishlistPage = () => {
-  const { wishlist } = useWishlist();
+  const { products, loading } = useWishlist();
+
+  if (loading) {
+    return (
+      <div className="wishlist-page">
+        <p className="wishlist-status">Loading your wishlist...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="wishlist-page">
@@ -12,16 +20,16 @@ const WishlistPage = () => {
         <p>Your saved items</p>
       </div>
 
-      {wishlist.length === 0 ? (
+      {products.length === 0 ? (
         <div className="wishlist-empty">
           <p>You haven't saved anything yet.</p>
         </div>
       ) : (
         <div className="wishlist-grid">
-          {wishlist.map((item) => (
+          {products.map((item) => (
             <ShopAllCard
-              key={item.id}
-              id={item.id}
+              key={item._id}
+              id={item._id}
               image={item.image}
               name={item.name}
               price={item.price}

@@ -7,11 +7,11 @@ const admin = require("../middlewares/admin");
 router.post("/signup", signup);
 router.post("/login", login);
 
-router.get('/me', auth, (req, res) => {
+router.get("/me", auth, (req, res) => {
   res.json({
     user: {
       id: req.user._id,
-      name: req.user.name,
+      fullName: req.user.fullName,
       email: req.user.email,
       role: req.user.role,
     },

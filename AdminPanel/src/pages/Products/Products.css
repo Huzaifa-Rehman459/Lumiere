@@ -30,3 +30,27 @@
   background: #fff;
   font-size: 10px;
 }
+.prod-thumb {
+  width: 42px;
+  height: 42px;
+  border-radius: 5px;
+  object-fit: cover;
+  display: block;
+}
+.prod-thumb--empty {
+  display: grid;
+  place-items: center;
+  background: #f7e7e3;
+  color: #b17b70;
+  font-weight: 600;
+}
+.prod-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: #f1efec;
+  color: #6d655f;
+  font-size: 9px;
+  vertical-align: 1px;
+}

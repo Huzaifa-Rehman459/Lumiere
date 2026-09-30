@@ -1,4 +1,8 @@
-import "./Panel.css";
-export default function Panel({ children, className = "" }) {
-  return <section className={`panel ${className}`}>{children}</section>;
+export default function Panel({ title, className = "", children }) {
+  return (
+    <section className={`panel ${className}`}>
+      {title && <h3 className="panel-title">{title}</h3>}
+      {children}
+    </section>
+  );
 }

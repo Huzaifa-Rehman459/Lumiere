@@ -1,6 +1,6 @@
 import dressImg from "./dress-img-1.jpg";
 import dressImg2 from "./dress-img-2.jpg";
-// assets.js
+
 const bestSeller = [
   {
     id: 1,

@@ -94,6 +94,14 @@
   color: var(--blush);
   transform: translateX(3px);
 }
+.category-status {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+}
+.category-status--error {
+  color: #c0392b;
+}
 
 /* ---------- Responsive ---------- */
 

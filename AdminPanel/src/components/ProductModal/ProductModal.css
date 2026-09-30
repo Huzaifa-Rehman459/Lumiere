@@ -1,0 +1,167 @@
+.entity-modal.product-modal {
+  width: min(660px, 100%);
+}
+.entity-modal textarea {
+  width: 100%;
+  border: 1px solid #e3dcd6;
+  border-radius: 5px;
+  padding: 10px;
+  outline: 0;
+  background: #fff;
+  font: inherit;
+  resize: vertical;
+}
+.product-modal .row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 12px;
+}
+.product-modal .field-group {
+  margin-bottom: 14px;
+}
+.product-modal .field-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #625a54;
+}
+.product-modal .modal-hint {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: #948a83;
+}
+.product-modal .modal-error {
+  color: #c0392b;
+  font-size: 12px;
+  margin: 0 0 8px;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  border: 1px solid #e3dcd6;
+  background: #fff;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: #625a54;
+  cursor: pointer;
+}
+.chip:hover {
+  border-color: #cdbfb6;
+}
+.chip-on {
+  background: #171717;
+  border-color: #171717;
+  color: #fff;
+}
+.chip-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 50%;
+  border: 1px solid #0002;
+  vertical-align: -1px;
+}
+
+.color-row {
+  display: grid;
+  grid-template-columns: 44px 1fr 32px;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+.product-modal input[type="color"] {
+  width: 44px;
+  height: 38px;
+  padding: 2px;
+  cursor: pointer;
+}
+.color-row button {
+  border: 0;
+  background: #fbf6f3;
+  border-radius: 4px;
+  height: 34px;
+  color: #75665e;
+  cursor: pointer;
+}
+
+.img-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 10px;
+}
+.img-tile {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #e3dcd6;
+  background: #f7f1ee;
+}
+.img-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.img-tile-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #000a;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.img-tile-tag {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background: #fff;
+  color: #3c2f29;
+  font-size: 9px;
+}
+.img-add {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  border: 1px dashed #cdbfb6;
+  border-radius: 6px;
+  background: #fff;
+  color: #8a7b72;
+  font-size: 11px;
+  cursor: pointer;
+}
+.img-add:hover {
+  background: #fbf6f3;
+}
+
+.entity-modal .check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.entity-modal .check-row input {
+  width: auto;
+}
+
+@media (max-width: 560px) {
+  .product-modal .row-3 {
+    grid-template-columns: 1fr;
+  }
+}

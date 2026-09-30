@@ -140,6 +140,11 @@ form button:hover{
     object-fit: cover;
     object-position: center;
 }
+  .form-error {
+    color: #c0392b;
+    font-size: 0.85rem;
+    margin: -8px 0 8px;
+  }
 /* Large tablets / small laptops */
 @media (max-width: 1024px) {
   .signup-page .signup-left {

@@ -1,0 +1,47 @@
+.entity-modal textarea {
+  width: 100%;
+  border: 1px solid #e3dcd6;
+  border-radius: 5px;
+  padding: 10px;
+  outline: 0;
+  background: #fff;
+  font: inherit;
+  resize: vertical;
+}
+.cat-modal-image {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.cat-modal-preview {
+  width: 84px;
+  height: 84px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #e3dcd6;
+}
+.cat-modal-preview--empty {
+  display: grid;
+  place-items: center;
+  background: #f7f1ee;
+  color: #a99b93;
+  font-size: 11px;
+}
+.cat-modal-image-actions {
+  display: grid;
+  gap: 6px;
+}
+.entity-modal .check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.entity-modal .check-row input {
+  width: auto;
+}
+.modal-error {
+  color: #c0392b;
+  font-size: 12px;
+  margin: 0 0 8px;
+}

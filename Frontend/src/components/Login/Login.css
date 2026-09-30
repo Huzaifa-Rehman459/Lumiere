@@ -39,6 +39,11 @@
     flex-direction: column;
     gap: 1.3rem;
 }
+  .form-error {
+    color: #c0392b;
+    font-size: 0.85rem;
+    margin: -8px 0 8px;
+  }
 form .input-box{
     display: flex;
     flex-direction: column;

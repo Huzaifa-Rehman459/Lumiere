@@ -12,6 +12,7 @@ const productRoute = require("./routes/productRoute");
 const cartRoute = require("./routes/cartRoute");
 const wishlistRoute = require("./routes/wishlistRoute");
 const categoryRoute = require("./routes/categoryRoutes");
+const orderRoute = require("./routes/orderRoute");
 
 //mongo connection
 connectDB();
@@ -22,12 +23,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 //api routes
-app.use("/api", userRoute);
+app.use("/api/auth", userRoute);
 app.use("/api/admin", adminRoute);
 app.use("/api/products", productRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/wishlist", wishlistRoute);
 app.use("/api/categories", categoryRoute);
+app.use("/api/orders", orderRoute);
 
 //server started
 app.listen(PORT, () =>{

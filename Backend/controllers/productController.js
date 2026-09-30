@@ -15,7 +15,6 @@ const SORTS = {
   rating: { rating: -1, _id: 1 },
 };
 
-// "M,L" or ["M","L"] -> ["M","L"]. Anything that isn't a string is dropped.
 function toList(value) {
   const arr = Array.isArray(value) ? value : [value];
   return arr
@@ -30,13 +29,6 @@ function parseNumber(value) {
   return Number(value);
 }
 
-// ---------------------------------------------------------------------------
-// Validates product fields and returns { error } or { data }.
-// partial = false -> creating (name, description, price, category required)
-// partial = true  -> updating (only fields that were actually sent are checked)
-// Building `data` field by field (never trusting req.body directly) is what
-// stops mass-assignment, e.g. someone sending "rating": 5 to fake reviews.
-// ---------------------------------------------------------------------------
 async function buildProductData(body, { partial }) {
   const data = {};
   const provided = (key) => body[key] !== undefined;
@@ -103,7 +95,7 @@ async function buildProductData(body, { partial }) {
           typeof c.name === "string" &&
           c.name.trim() &&
           typeof c.hex === "string" &&
-          HEX.test(c.hex)
+          HEX.test(c.hex),
       );
     if (!valid) {
       return {
@@ -164,10 +156,21 @@ async function getProducts(req, res) {
     } = req.query;
     const filter = {};
 
+    const { search } = req.query;
+    if (search !== undefined) {
+      if (typeof search !== "string" || !search.trim()) {
+        return res.status(400).json({ message: "Search term cannot be empty" });
+      }
+      const escaped = search.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      filter.name = { $regex: escaped, $options: "i" };
+    }
+
     const categorySlugsOrIds = toList(req.query.category);
     if (categorySlugsOrIds.length) {
       const ids = categorySlugsOrIds.filter((c) => mongoose.isValidObjectId(c));
-      const slugs = categorySlugsOrIds.filter((c) => !mongoose.isValidObjectId(c));
+      const slugs = categorySlugsOrIds.filter(
+        (c) => !mongoose.isValidObjectId(c),
+      );
 
       const matched = await categoryModel
         .find({ $or: [{ _id: { $in: ids } }, { slug: { $in: slugs } }] })
@@ -236,7 +239,7 @@ async function getProducts(req, res) {
     const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
     const limit = Math.min(
       Math.max(parseInt(req.query.limit, 10) || 12, 1),
-      50
+      50,
     );
 
     const [products, total] = await Promise.all([
@@ -312,10 +315,9 @@ async function updateProduct(req, res) {
   }
 }
 
-// Best-effort cleanup: never throws
 async function removeFromCloudinary(publicIds) {
   await Promise.allSettled(
-    publicIds.map((publicId) => cloudinary.uploader.destroy(publicId))
+    publicIds.map((publicId) => cloudinary.uploader.destroy(publicId)),
   );
 }
 
@@ -350,7 +352,7 @@ function uploadBuffer(buffer) {
         resource_type: "image",
         allowed_formats: ["jpg", "jpeg", "png", "webp"],
       },
-      (error, result) => (error ? reject(error) : resolve(result))
+      (error, result) => (error ? reject(error) : resolve(result)),
     );
     stream.end(buffer);
   });
@@ -383,7 +385,7 @@ async function uploadProductImages(req, res) {
     }
 
     const results = await Promise.allSettled(
-      files.map((file) => uploadBuffer(file.buffer))
+      files.map((file) => uploadBuffer(file.buffer)),
     );
 
     results
@@ -405,7 +407,7 @@ async function uploadProductImages(req, res) {
     const updated = await productModel.findByIdAndUpdate(
       id,
       { $push: { images: { $each: uploaded } } },
-      { new: true }
+      { new: true },
     );
 
     // Product was deleted while we were uploading
@@ -445,7 +447,7 @@ async function deleteProductImage(req, res) {
     const updated = await productModel.findByIdAndUpdate(
       id,
       { $pull: { images: { _id: imageId } } },
-      { new: true }
+      { new: true },
     );
 
     res.json({ product: updated });

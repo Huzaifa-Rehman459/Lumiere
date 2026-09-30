@@ -14,3 +14,12 @@
 .app-toast svg {
   color: #a8ddb6;
 }
+.app-toast {
+  max-width: min(420px, calc(100vw - 44px));
+}
+.app-toast--error {
+  background: #7a2a22;
+}
+.app-toast--error svg {
+  color: #ffb4a8;
+}

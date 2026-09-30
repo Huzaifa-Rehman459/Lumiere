@@ -137,6 +137,33 @@ aside .price-range-box {
   gap: 2rem;
   margin-top: 1.5rem;
 }
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+.pagination button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.shop-status {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  grid-column: 1 / -1;
+}
+.shop-status--error {
+  color: #c0392b;
+}
+
 @media (max-width: 1200px) {
   .shopAll-products {
     grid-template-columns: repeat(3, minmax(0, 1fr));

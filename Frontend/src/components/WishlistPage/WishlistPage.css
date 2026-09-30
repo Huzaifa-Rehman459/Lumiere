@@ -4,6 +4,12 @@
   padding: 3rem 4rem;
 }
 
+.wishlist-status {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
 .wishlist-header {
   display: flex;
   flex-direction: column;
