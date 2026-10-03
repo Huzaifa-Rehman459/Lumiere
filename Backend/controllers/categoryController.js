@@ -169,17 +169,13 @@ async function deleteCategory(req, res) {
   }
 }
 
-function uploadBuffer(buffer) {
-  return new Promise((resolve, reject) => {
-    const stream = cloudinary.uploader.upload_stream(
-      {
-        folder: "lumiere/categories",
-        resource_type: "image",
-        allowed_formats: ["jpg", "jpeg", "png", "webp"],
-      },
-      (error, result) => (error ? reject(error) : resolve(result))
-    );
-    stream.end(buffer);
+function uploadBuffer(file) {
+  const base64 = file.buffer.toString("base64");
+  const dataUri = `data:${file.mimetype};base64,${base64}`;
+  return cloudinary.uploader.upload(dataUri, {
+    folder: "lumiere/categories",
+    resource_type: "image",
+    allowed_formats: ["jpg", "jpeg", "png", "webp"],
   });
 }
 

@@ -344,17 +344,13 @@ async function deleteProduct(req, res) {
 }
 
 // Uploads one in-memory file to Cloudinary and resolves with the result
-function uploadBuffer(buffer) {
-  return new Promise((resolve, reject) => {
-    const stream = cloudinary.uploader.upload_stream(
-      {
-        folder: "lumiere/products",
-        resource_type: "image",
-        allowed_formats: ["jpg", "jpeg", "png", "webp"],
-      },
-      (error, result) => (error ? reject(error) : resolve(result)),
-    );
-    stream.end(buffer);
+function uploadBuffer(file) {
+  const base64 = file.buffer.toString("base64");
+  const dataUri = `data:${file.mimetype};base64,${base64}`;
+  return cloudinary.uploader.upload(dataUri, {
+    folder: "lumiere/products",
+    resource_type: "image",
+    allowed_formats: ["jpg", "jpeg", "png", "webp"],
   });
 }
 
@@ -385,7 +381,7 @@ async function uploadProductImages(req, res) {
     }
 
     const results = await Promise.allSettled(
-      files.map((file) => uploadBuffer(file.buffer)),
+      files.map((file) => uploadBuffer(file)),
     );
 
     results
