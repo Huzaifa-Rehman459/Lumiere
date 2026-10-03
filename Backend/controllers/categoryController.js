@@ -205,7 +205,7 @@ async function uploadCategoryImage(req, res) {
 
     let result;
     try {
-      result = await uploadBuffer(req.file.buffer);
+      result = await uploadBuffer(req.file);   // passing the whole file object
     } catch (err) {
       console.error("Cloudinary upload error:", err);
       return res.status(502).json({ message: "Image upload failed. Please try again." });

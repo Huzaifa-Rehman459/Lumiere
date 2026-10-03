@@ -381,7 +381,7 @@ async function uploadProductImages(req, res) {
     }
 
     const results = await Promise.allSettled(
-      files.map((file) => uploadBuffer(file)),
+      files.map((file) => uploadBuffer(file))
     );
 
     results
