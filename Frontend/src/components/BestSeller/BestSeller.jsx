@@ -11,7 +11,7 @@ const BestSeller = () => {
     <div className='seller-page'>
       <div className="seller-header">
         <h2>Best Sellers</h2>
-        <Link to="/shop">
+        <Link to="/ShopAll">
           <a href="">View All<MoveRight size={18} /></a>
         </Link>
       </div>

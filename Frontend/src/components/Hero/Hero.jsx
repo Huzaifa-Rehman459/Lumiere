@@ -17,7 +17,7 @@ const Hero = () => {
           Discover the latest trends in women's tashion,<br></br> From casuals to
           classics, find your perfect look.
         </span>
-        <Link to="/shop">
+        <Link to="/ShopAll">
           <button>Shop Now<MoveRight /></button>
         </Link>
       </div>

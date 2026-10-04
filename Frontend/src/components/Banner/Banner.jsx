@@ -10,7 +10,7 @@ const Banner = () => {
       <div className="ad-banner-text">
         <h2>New Arrivals</h2>
         <h1>Fresh styles for<br></br>every occasion</h1>
-        <Link to="/shop">
+        <Link to="/ShopAll">
           <a href=''>Shop new arrivals<MoveRight size={15} /></a>
         </Link>
       </div>
