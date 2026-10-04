@@ -37,7 +37,7 @@ function ShopAllCard({ id, image, name, price }) {
       <div className="card-info">
         <h3>{name}</h3>
         <div className="prices">
-          <p>${price}</p>
+          <p>PKR {price}</p>
           <button className="cart-btn" onClick={(e) => { e.stopPropagation(); goToProduct(); }}>
             <ShoppingCart size={20} />
           </button>

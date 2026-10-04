@@ -88,7 +88,7 @@ const OrderTracking = () => {
               ))}
               <div className="tracking-item tracking-total">
                 <span>Total</span>
-                <span>${order.total.toFixed(2)}</span>
+                <span>PKR {order.total.toFixed(2)}</span>
               </div>
             </div>
           </div>

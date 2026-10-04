@@ -1,17 +1,22 @@
-// components/ProductCard.jsx
 import { Heart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useWishlist } from "../../context/WishlistContext";
-import "./ProductCard.css"
+import { useAuth } from "../../context/AuthContext";
+import "./ProductCard.css";
 
-function ProductCard({ id, image, name, price, oldPrice }) {
+function ProductCard({ id, image, name, price }) {
   const navigate = useNavigate();
   const { isWishlisted, toggleWishlist } = useWishlist();
+  const { isLoggedIn } = useAuth();
   const liked = isWishlisted(id);
 
   const handleToggleWishlist = (e) => {
     e.stopPropagation();
-    toggleWishlist({ id, image, name, price });
+    if (!isLoggedIn) {
+      navigate("/Login");
+      return;
+    }
+    toggleWishlist(id).catch((err) => console.error("Wishlist error:", err.message));
   };
 
   return (
@@ -29,8 +34,7 @@ function ProductCard({ id, image, name, price, oldPrice }) {
       <div className="card-info">
         <h3>{name}</h3>
         <div className="prices">
-            <p>${price}</p>
-            <span>${oldPrice}</span>
+          <p>PKR {price}</p>
         </div>
       </div>
     </div>
