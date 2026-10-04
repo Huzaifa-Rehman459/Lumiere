@@ -14,6 +14,7 @@
   min-width: 180px;
   flex-shrink: 0;
   padding: 1rem 2rem;
+
   display: flex;
   flex-direction: column;
   gap: 1.3rem;
@@ -42,6 +43,7 @@ aside .price-range-box {
 .price-range-box .price-range-checkbox {
   display: flex;
   gap: 0.6rem;
+
   font-family: var(--inter);
   color: var(--gray);
   font-size: 0.8rem;
@@ -125,6 +127,7 @@ aside .price-range-box {
   border-radius: 5px;
   outline: none;
   border: 1px solid var(--border);
+
   font-weight: 600;
   font-family: var(--inter);
   color: var(--black);
@@ -132,11 +135,19 @@ aside .price-range-box {
 
 .shop-page-content .shopAll-products {
   width: 100%;
+
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+
   gap: 2rem;
   margin-top: 1.5rem;
 }
+
+.shopAll-products > * {
+  min-width: 0;
+  width: 100%;
+}
+
 .pagination {
   display: flex;
   align-items: center;
@@ -144,123 +155,53 @@ aside .price-range-box {
   gap: 16px;
   margin-top: 32px;
 }
+
 .pagination button {
   padding: 8px 16px;
   border: 1px solid #ccc;
   background: #fff;
   cursor: pointer;
 }
+
 .pagination button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
+
 .shop-status {
   text-align: center;
   padding: 60px 20px;
   color: #666;
   grid-column: 1 / -1;
 }
+
 .shop-status--error {
   color: #c0392b;
 }
-/* ---------- Mobile filter drawer ---------- */
+
+/* =========================
+   MOBILE FILTER BUTTON
+========================= */
 
 .filters-toggle,
 .filters-close {
-  display: none; /* hidden on desktop/tablet, shown only under 768px below */
+  display: none;
 }
 
-@media (max-width: 768px) {
-  /* Sidebar becomes a slide-out drawer instead of a shrinking column */
-  .shop-page-content aside {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: min(78%, 300px);
-    min-width: 0;
-    background: var(--white, #fff);
-    z-index: 200;
-    padding: 1.4rem;
-    overflow-y: auto;
-    transform: translateX(-100%);
-    transition: transform 0.25s ease-in-out;
-    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.08);
-  }
-  .shop-page-content aside.aside-open {
-    transform: translateX(0);
-  }
-
-  .filters-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    border: none;
-    z-index: 150;
-    padding: 0;
-    cursor: pointer;
-  }
-
-  .filters-close {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: none;
-    border: none;
-    font-family: var(--inter);
-    font-size: 0.9rem;
-    color: var(--text);
-    padding: 0 0 1rem;
-    margin-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-  }
-
-  .filters-toggle {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    background: #fff;
-    font-family: var(--inter);
-    font-weight: 500;
-    font-size: 0.85rem;
-    color: var(--black);
-    cursor: pointer;
-  }
-
-  /* Product grid now owns the full width, since the sidebar floats on top
-     instead of sitting beside it */
-  .shop-page-content .shop-product-cards {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .shopAll-products {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .shop-page-content .shop-product-cards {
-    padding: 0.6rem;
-  }
-
-  .shopAll-products {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.6rem;
-  }
-}
+/* =========================
+   TABLET / LAPTOP
+========================= */
 
 @media (max-width: 1200px) {
-  .shopAll-products {
+  .shop-page-content .shopAll-products {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.5rem;
   }
 }
+
+/* =========================
+   1024px
+========================= */
 
 @media (max-width: 1024px) {
   .shop-page-content aside {
@@ -281,22 +222,117 @@ aside .price-range-box {
     font-size: 1.05rem;
   }
 
-  .shopAll-products {
+  .shop-page-content .shopAll-products {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.2rem;
   }
 }
 
+/* =========================
+   MOBILE - 768px
+========================= */
+
 @media (max-width: 768px) {
   .shop-page-content aside {
-    width: 28%;
-    min-width: 130px;
-    padding: 1rem 0.8rem;
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: min(78%, 300px);
+    min-width: 0;
+    height: 100vh;
+
+    background: var(--white, #fff);
+
+    z-index: 200;
+
+    padding: 1.4rem;
+
+    overflow-y: auto;
+
+    transform: translateX(-100%);
+
+    transition: transform 0.25s ease-in-out;
+
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .shop-page-content aside.aside-open {
+    transform: translateX(0);
+  }
+
+  .filters-backdrop {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.4);
+
+    border: none;
+
+    z-index: 150;
+
+    padding: 0;
+
+    cursor: pointer;
+  }
+
+  .filters-close {
+    display: flex;
+
+    align-items: center;
+    gap: 0.5rem;
+
+    background: none;
+    border: none;
+
+    font-family: var(--inter);
+    font-size: 0.9rem;
+
+    color: var(--text);
+
+    padding: 0 0 1rem;
+    margin-bottom: 0.5rem;
+
+    border-bottom: 1px solid var(--border);
+
+    cursor: pointer;
+  }
+
+  .filters-toggle {
+    display: flex;
+
+    align-items: center;
+    gap: 0.5rem;
+
+    padding: 0.6rem 1rem;
+
+    border: 1px solid var(--border);
+    border-radius: 5px;
+
+    background: #fff;
+
+    font-family: var(--inter);
+    font-weight: 500;
+    font-size: 0.85rem;
+
+    color: var(--black);
+
+    cursor: pointer;
   }
 
   .shop-page-content .shop-product-cards {
-    width: 72%;
+    width: 100%;
     padding: 1rem;
+  }
+
+  .shop-page-content .shopAll-products {
+    width: 100%;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 1rem;
   }
 
   .category-box h2,
@@ -316,24 +352,29 @@ aside .price-range-box {
     width: 15px;
     height: 15px;
   }
-
-  .shopAll-products {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
 }
 
+/* =========================
+   SMALL MOBILE - 480px
+========================= */
+
 @media (max-width: 480px) {
-  .shop-page-content aside {
-    width: 32%;
-    min-width: 110px;
-    padding: 0.8rem 0.5rem;
-    gap: 1rem;
+  .shop-page-content .shop-product-cards {
+    width: 100%;
+    padding: 0.6rem;
   }
 
-  .shop-page-content .shop-product-cards {
-    width: 68%;
-    padding: 0.6rem;
+  .shop-page-content .shopAll-products {
+    width: 100%;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 0.6rem;
+  }
+
+  .shop-page-content .shopAll-products > * {
+    width: 100%;
+    min-width: 0;
   }
 
   .category-box h2,
@@ -349,8 +390,8 @@ aside .price-range-box {
     font-size: 0.6rem;
   }
 
-  .shopAll-products {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.6rem;
+  .color {
+    width: 15px;
+    height: 15px;
   }
 }
