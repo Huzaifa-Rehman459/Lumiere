@@ -1,10 +1,11 @@
 .contact-page {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: space-between;
   padding: 3rem;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 .contact-page .contact-left {
   background-color: #ebe5e5;
@@ -106,94 +107,33 @@ form button:hover {
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 1200px) {
-  .contact-page {
-    padding: 2.5rem;
-    gap: 1.5rem;
-  }
-  .contact-left h1 {
-    font-size: 1.7rem;
-  }
-}
-
 @media (max-width: 1024px) {
   .contact-page {
     padding: 2rem;
-  }
-  .contact-left,
-  .contact-right {
-    padding: 1.7rem;
-  }
-  .contact-left h1 {
-    font-size: 1.5rem;
-  }
-  .contact-right h2 {
-    font-size: 1.3rem;
-  }
-  form button {
-    width: 40%;
-  }
-}
-
-@media (max-width: 900px) {
-  .contact-page {
-    flex-direction: column;
-    padding: 1.5rem;
   }
   .contact-page .contact-left,
   .contact-page .contact-right {
     width: 100%;
   }
-  .contact-left .info-details {
-    gap: 1.8rem;
-  }
-  form button {
-    width: 50%;
-  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .contact-page {
     padding: 1.2rem;
     gap: 1.2rem;
   }
-  .contact-left,
-  .contact-right {
+  .contact-page .contact-left,
+  .contact-page .contact-right {
     padding: 1.3rem;
   }
   .contact-left h1 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
   .contact-right h2 {
-    font-size: 1.1rem;
-  }
-  .info-text h3 {
-    font-size: 0.9rem;
-  }
-  .info-text span {
-    font-size: 0.75rem;
-  }
-  .info-box {
-    gap: 1rem;
-  }
-  form .input-box label {
-    font-size: 0.75rem;
+    font-size: 1.2rem;
   }
   form button {
     width: 100%;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .contact-left,
-  .contact-right {
-    padding: 1rem;
-  }
-  .contact-left h1 {
-    font-size: 1.15rem;
-  }
-  .contact-right h2 {
-    font-size: 1rem;
+    padding: 0.8rem;
   }
 }

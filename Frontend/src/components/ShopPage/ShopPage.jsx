@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { SlidersHorizontal, X } from "lucide-react";
 import "./ShopPage.css";
 import { apiRequest } from "../../api/client";
 import ShopAllCard from "../ShopAllCard/ShopAllCard";
@@ -7,9 +8,9 @@ import ShopAllCard from "../ShopAllCard/ShopAllCard";
 const SIZES = ["XS", "S", "M", "L", "XL"];
 const COLORS = ["Black", "Blue", "Pink", "Green", "Beige", "Red"];
 const PRICE_RANGES = {
-  "0-50": { minPrice: 0, maxPrice: 50 },
-  "50-100": { minPrice: 50, maxPrice: 100 },
-  "100+": { minPrice: 100 },
+  "0-4000": { minPrice: 0, maxPrice: 4000 },
+  "4000-7000": { minPrice: 4000, maxPrice: 7000 },
+  "7000+": { minPrice: 7000 },
 };
 const PAGE_SIZE = 9;
 
@@ -29,6 +30,8 @@ const ShopPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
   // Load the category list for the sidebar once.
   useEffect(() => {
     apiRequest("/categories")
@@ -42,25 +45,22 @@ const ShopPage = () => {
     }
   }, [urlCategorySlug]);
 
-  // Any filter/sort change goes back to page 1 — otherwise you could land on
-  // "page 3" of a filtered result that only has 1 page.
-
   const handleCategoryToggle = (slug) => {
     setSelectedCategories((prev) =>
-      prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug]
+      prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug],
     );
     setPage(1);
   };
 
   const handleSizeToggle = (size) => {
     setSelectedSizes((prev) =>
-      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
+      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size],
     );
     setPage(1);
   };
 
   const handleColorSelect = (color) => {
-    setSelectedColor((prev) => (prev === color ? null : color)); // click again to clear
+    setSelectedColor((prev) => (prev === color ? null : color));
     setPage(1);
   };
 
@@ -80,7 +80,8 @@ const ShopPage = () => {
     setError("");
 
     const params = new URLSearchParams();
-    if (selectedCategories.length) params.set("category", selectedCategories.join(","));
+    if (selectedCategories.length)
+      params.set("category", selectedCategories.join(","));
     if (selectedSizes.length) params.set("size", selectedSizes.join(","));
     if (selectedColor) params.set("color", selectedColor);
     if (priceRange) {
@@ -110,12 +111,26 @@ const ShopPage = () => {
     return () => {
       cancelled = true;
     };
-  }, [selectedCategories, selectedSizes, selectedColor, priceRange, sort, page]);
+  }, [
+    selectedCategories,
+    selectedSizes,
+    selectedColor,
+    priceRange,
+    sort,
+    page,
+  ]);
 
   return (
     <div className="shop-page">
       <div className="shop-page-content">
-        <aside>
+        <aside className={filtersOpen ? "aside-open" : ""}>
+          <button
+            className="filters-close"
+            onClick={() => setFiltersOpen(false)}
+          >
+            <X size={18} /> Close
+          </button>
+
           <div className="category-box">
             <h2>Category</h2>
             {categories.map((cat) => (
@@ -171,17 +186,31 @@ const ShopPage = () => {
                   onChange={() => handlePriceSelect(key)}
                 />
                 <span>
-                  {key === "100+"
-                    ? "$100+"
-                    : `$${PRICE_RANGES[key].minPrice} - ${PRICE_RANGES[key].maxPrice}`}
+                  {key === "7000+"
+                    ? "PKR 7,000+"
+                    : `PKR ${PRICE_RANGES[key].minPrice.toLocaleString()} - ${PRICE_RANGES[key].maxPrice.toLocaleString()}`}
                 </span>
               </div>
             ))}
           </div>
         </aside>
 
+        {filtersOpen && (
+          <button
+            className="filters-backdrop"
+            aria-label="Close filters"
+            onClick={() => setFiltersOpen(false)}
+          />
+        )}
+
         <div className="shop-product-cards">
           <div className="sorting-boxes">
+            <button
+              className="filters-toggle"
+              onClick={() => setFiltersOpen(true)}
+            >
+              <SlidersHorizontal size={16} /> Filters
+            </button>
             <div className="sort-box">
               <span>Sort By:</span>
               <select value={sort} onChange={handleSortChange}>
@@ -216,13 +245,19 @@ const ShopPage = () => {
 
               {pages > 1 && (
                 <div className="pagination">
-                  <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)}>
+                  <button
+                    disabled={page <= 1}
+                    onClick={() => setPage((p) => p - 1)}
+                  >
                     Previous
                   </button>
                   <span>
                     Page {page} of {pages}
                   </span>
-                  <button disabled={page >= pages} onClick={() => setPage((p) => p + 1)}>
+                  <button
+                    disabled={page >= pages}
+                    onClick={() => setPage((p) => p + 1)}
+                  >
                     Next
                   </button>
                 </div>

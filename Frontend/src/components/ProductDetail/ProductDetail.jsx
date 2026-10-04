@@ -224,7 +224,7 @@ export default function ProductDetail() {
           <h1 className="pd-info__title">{product.name}</h1>
           <StarRating value={product.rating} count={product.numReviews} />
 
-          <p className="pd-info__price">${product.price}</p>
+          <p className="pd-info__price">PKR {product.price.toFixed(2)}</p>
 
           <p className="pd-info__description">{product.description}</p>
 
@@ -344,7 +344,7 @@ export default function ProductDetail() {
                   />
                 </div>
                 <p className="pd-related-card__name">{item.name}</p>
-                <p className="pd-related-card__price">${item.price}</p>
+                <p className="pd-related-card__price">PKR {item.price}</p>
               </button>
             ))}
           </div>

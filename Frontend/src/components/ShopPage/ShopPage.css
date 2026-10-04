@@ -163,6 +163,97 @@ aside .price-range-box {
 .shop-status--error {
   color: #c0392b;
 }
+/* ---------- Mobile filter drawer ---------- */
+
+.filters-toggle,
+.filters-close {
+  display: none; /* hidden on desktop/tablet, shown only under 768px below */
+}
+
+@media (max-width: 768px) {
+  /* Sidebar becomes a slide-out drawer instead of a shrinking column */
+  .shop-page-content aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: min(78%, 300px);
+    min-width: 0;
+    background: var(--white, #fff);
+    z-index: 200;
+    padding: 1.4rem;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease-in-out;
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.08);
+  }
+  .shop-page-content aside.aside-open {
+    transform: translateX(0);
+  }
+
+  .filters-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    z-index: 150;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .filters-close {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    font-family: var(--inter);
+    font-size: 0.9rem;
+    color: var(--text);
+    padding: 0 0 1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .filters-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: #fff;
+    font-family: var(--inter);
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--black);
+    cursor: pointer;
+  }
+
+  /* Product grid now owns the full width, since the sidebar floats on top
+     instead of sitting beside it */
+  .shop-page-content .shop-product-cards {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .shopAll-products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-page-content .shop-product-cards {
+    padding: 0.6rem;
+  }
+
+  .shopAll-products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+}
 
 @media (max-width: 1200px) {
   .shopAll-products {

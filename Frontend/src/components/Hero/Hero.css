@@ -1,5 +1,5 @@
 .hero-page {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -16,6 +16,7 @@
   flex-direction: column;
   gap: 2rem;
   animation: fadeIn 2s ease;
+  max-width: 560px;
 }
 .hero-text .hero-main-text {
   display: flex;
@@ -27,7 +28,7 @@
   font-family: var(--inter);
   font-weight: 300;
   color: var(--text);
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
 }
 .hero-main-text h1 {
   text-transform: capitalize;
@@ -69,8 +70,11 @@ a {
   color: var(--black);
 }
 
+/* ---------- Responsive ---------- */
+
 @media (max-width: 1024px) {
   .hero-page {
+    min-height: 90vh;
     padding: 3rem;
     background-position: 65% top;
   }
@@ -85,8 +89,12 @@ a {
 /* Tablets */
 @media (max-width: 768px) {
   .hero-page {
+    min-height: 80vh;
     padding: 2.5rem;
     background-position: 60% top;
+  }
+  .hero-text {
+    max-width: 100%;
   }
   .hero-main-text h1 {
     font-size: 2.2rem;
@@ -103,9 +111,12 @@ a {
 /* Mobile */
 @media (max-width: 480px) {
   .hero-page {
-    height: 100vh;
+    min-height: 65vh;
     padding: 1.5rem;
     background-position: 55% top;
+  }
+  .hero-text {
+    gap: 1.3rem;
   }
   .hero-main-text h1 {
     font-size: 1.8rem;
@@ -118,8 +129,27 @@ a {
     line-height: 1.5rem;
   }
   .hero-text button {
-    width: 90%;
+    width: 100%;
     padding: 0.8rem;
     font-size: 0.95rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .hero-page {
+    min-height: 60vh;
+    padding: 1.2rem;
+    background-position: 50% top;
+  }
+  .hero-main-text h1 {
+    font-size: 1.5rem;
+  }
+  .hero-text span {
+    font-size: 0.85rem;
+    line-height: 1.4rem;
+  }
+  .hero-text button {
+    font-size: 0.9rem;
   }
 }
