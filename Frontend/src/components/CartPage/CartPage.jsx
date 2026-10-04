@@ -107,7 +107,7 @@ const CartPage = () => {
                       </button>
                     </div>
                     <p className="cart-item-price">
-                      ${item.lineTotal.toFixed(2)}
+                      PKR {item.lineTotal.toFixed(2)}
                     </p>
                   </div>
                 </div>
@@ -119,17 +119,17 @@ const CartPage = () => {
             <h2>Order Summary</h2>
             <div className="summary-row">
               <span>Subtotal</span>
-              <span>${cart.subtotal.toFixed(2)}</span>
+              <span>PKR {cart.subtotal.toFixed(2)}</span>
             </div>
             <div className="summary-row">
               <span>Shipping</span>
               <span>
-                {cart.shipping === 0 ? "Free" : `$${cart.shipping.toFixed(2)}`}
+                {cart.shipping === 0 ? "Free" : `PKR ${cart.shipping.toFixed(2)}`}
               </span>
             </div>
             <div className="summary-row total-row">
               <span>Total</span>
-              <span>${cart.total.toFixed(2)}</span>
+              <span>PKR {cart.total.toFixed(2)}</span>
             </div>
 
             <button

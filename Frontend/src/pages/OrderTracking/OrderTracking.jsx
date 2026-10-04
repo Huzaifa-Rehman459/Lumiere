@@ -83,7 +83,7 @@ const OrderTracking = () => {
               {order.items.map((item, i) => (
                 <div className="tracking-item" key={i}>
                   <span>{item.name} × {item.quantity}</span>
-                  <span>${item.lineTotal.toFixed(2)}</span>
+                  <span>PKR {item.lineTotal.toFixed(2)}</span>
                 </div>
               ))}
               <div className="tracking-item tracking-total">

@@ -1,4 +1,8 @@
-export const money = (value) => "$" + Number(value || 0).toFixed(2);
+export const money = (value) =>
+  "PKR " + Number(value || 0).toLocaleString("en-PK", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
 
 const safeCell = (value) => {
   let text = String(value ?? "");

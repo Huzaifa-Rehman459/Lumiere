@@ -83,12 +83,12 @@ const Checkout = () => {
           {cart.items.map((item) => (
             <div className="checkout-line" key={item._id}>
               <span>{item.product.name} × {item.quantity}</span>
-              <span>${item.lineTotal.toFixed(2)}</span>
+              <span>PKR {item.lineTotal.toFixed(2)}</span>
             </div>
           ))}
           <div className="checkout-line">
             <span>Shipping</span>
-            <span>{cart.shipping === 0 ? "Free" : `$${cart.shipping.toFixed(2)}`}</span>
+            <span>{cart.shipping === 0 ? "Free" : `PKR ${cart.shipping.toFixed(2)}`}</span>
           </div>
           <div className="checkout-line checkout-total">
             <span>Total</span>
