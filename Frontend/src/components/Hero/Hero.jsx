@@ -1,5 +1,6 @@
 import React from "react";
 import { MoveRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import "./Hero.css";
 
 const Hero = () => {
@@ -16,7 +17,9 @@ const Hero = () => {
           Discover the latest trends in women's tashion,<br></br> From casuals to
           classics, find your perfect look.
         </span>
-        <button>Shop Now<MoveRight /></button>
+        <Link to="/shop">
+          <button>Shop Now<MoveRight /></button>
+        </Link>
       </div>
     </div>
   );
