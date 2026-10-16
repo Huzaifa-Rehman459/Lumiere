@@ -176,6 +176,15 @@
   font-size: 0.8rem;
   color: #666;
 }
+.navbar-whatsapp {
+  display: flex;
+  align-items: center;
+  color: inherit;
+}
+
+.navbar-whatsapp:hover {
+  color: var(--blush);
+}
 
 @media (max-width: 768px) {
   .navbar .right-nav {

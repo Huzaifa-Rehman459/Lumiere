@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { apiRequest } from "./api/client";
+import PromoBar from "./components/PromoBar/PromoBar";
+import FloatingWhatsApp from "./components/FloatingWhatsApp/FloatingWhatsApp";
 import Home from "./pages/Home";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
@@ -25,6 +27,7 @@ function App() {
   }
   return (
     <>
+      <PromoBar />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -41,6 +44,7 @@ function App() {
         <Route path="/Checkout" element={<Checkout />} />
         <Route path="/OrderTracking" element={<OrderTracking />} />
       </Routes>
+      <FloatingWhatsApp />
     </>
   );
 }

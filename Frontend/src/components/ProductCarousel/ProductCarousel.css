@@ -1,0 +1,74 @@
+.product-carousel {
+  padding: 2.5rem 3rem;
+}
+
+.carousel-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.3rem;
+}
+
+.carousel-header h2 {
+  font-family: var(--play-fair);
+  font-weight: 500;
+  font-size: 1.7rem;
+  color: var(--black);
+}
+
+.carousel-header a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--inter);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.carousel-header a:hover {
+  color: var(--blush);
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1.3rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 0.4rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  width: 240px;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 768px) {
+  .product-carousel {
+    padding: 2rem 1.4rem;
+  }
+  .carousel-header h2 {
+    font-size: 1.4rem;
+  }
+  .carousel-item {
+    width: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item {
+    width: 140px;
+  }
+  .carousel-track {
+    gap: 0.9rem;
+  }
+}
