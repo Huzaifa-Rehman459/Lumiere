@@ -33,6 +33,7 @@ const WishlistPage = () => {
               image={item.image}
               name={item.name}
               price={item.price}
+              compareAtPrice={item.compareAtPrice}
             />
           ))}
         </div>

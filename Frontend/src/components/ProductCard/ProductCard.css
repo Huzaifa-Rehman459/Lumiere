@@ -7,6 +7,29 @@
   cursor: pointer;
 }
 
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.old-price {
+  color: var(--gray);
+  font-size: 0.82rem;
+}
+.new-price {
+  font-weight: 600;
+  color: var(--black);
+}
+.sale-badge {
+  background-color: var(--blush);
+  color: var(--black);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+}
+
 .card-image {
   position: relative;
   width: 100%;

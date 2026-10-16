@@ -26,7 +26,7 @@ async function buildWishlistView(wishlist) {
 
   const products = await productModel
     .find({ _id: { $in: wishlist.products } })
-    .select("name price images category rating");
+    .select("name price compareAtPrice images category rating");
 
   // Some ids in wishlist.products may point at deleted products
   if (products.length !== wishlist.products.length) {
@@ -39,6 +39,7 @@ async function buildWishlistView(wishlist) {
 
   return {
     products: products.map((p) => ({
+      compareAtPrice: p.compareAtPrice,
       _id: p._id,
       name: p.name,
       price: p.price,

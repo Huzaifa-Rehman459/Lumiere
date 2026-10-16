@@ -59,6 +59,22 @@ async function buildProductData(body, { partial }) {
     data.price = body.price;
   }
 
+  if (provided("compareAtPrice")) {
+    if (body.compareAtPrice !== null) {
+      if (
+        typeof body.compareAtPrice !== "number" ||
+        !Number.isFinite(body.compareAtPrice) ||
+        body.compareAtPrice < 0
+      ) {
+        return {
+          error:
+            "Compare-at price must be a number of 0 or more, or null to clear it",
+        };
+      }
+    }
+    data.compareAtPrice = body.compareAtPrice;
+  }
+
   if (needed("category")) {
     if (
       typeof body.category !== "string" ||
@@ -132,6 +148,11 @@ async function createProduct(req, res) {
       partial: false,
     });
     if (error) return res.status(400).json({ message: error });
+    if (data.compareAtPrice != null && data.compareAtPrice <= data.price) {
+      return res.status(400).json({
+        message: "Compare-at price must be higher than the actual price",
+      });
+    }
 
     const product = await productModel.create(data);
     res.status(201).json({ product });
@@ -298,6 +319,23 @@ async function updateProduct(req, res) {
       return res.status(400).json({ message: "No valid fields to update" });
     }
 
+    if (data.compareAtPrice != null) {
+      const effectivePrice =
+        data.price !== undefined
+          ? data.price
+          : (await productModel.findById(id).select("price"))?.price;
+      if (effectivePrice == null) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+      if (data.compareAtPrice <= effectivePrice) {
+        return res
+          .status(400)
+          .json({
+            message: "Compare-at price must be higher than the actual price",
+          });
+      }
+    }
+
     const product = await productModel
       .findByIdAndUpdate(id, { $set: data }, { new: true, runValidators: true })
       .populate("category", "name slug");
@@ -381,7 +419,7 @@ async function uploadProductImages(req, res) {
     }
 
     const results = await Promise.allSettled(
-      files.map((file) => uploadBuffer(file))
+      files.map((file) => uploadBuffer(file)),
     );
 
     results

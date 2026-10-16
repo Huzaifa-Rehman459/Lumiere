@@ -5,7 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import fallbackImg from "../../assets/dress-img-1.jpg";
 import "./ShopAllCard.css";
 
-function ShopAllCard({ id, image, name, price }) {
+function ShopAllCard({ id, image, name, price, compareAtPrice }) {
   const { isWishlisted, toggleWishlist } = useWishlist();
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
@@ -19,7 +19,9 @@ function ShopAllCard({ id, image, name, price }) {
       navigate("/Login");
       return;
     }
-    toggleWishlist(id).catch((err) => console.error("Wishlist error:", err.message));
+    toggleWishlist(id).catch((err) =>
+      console.error("Wishlist error:", err.message),
+    );
   };
 
   return (
@@ -37,8 +39,25 @@ function ShopAllCard({ id, image, name, price }) {
       <div className="card-info">
         <h3>{name}</h3>
         <div className="prices">
-          <p>PKR {price}</p>
-          <button className="cart-btn" onClick={(e) => { e.stopPropagation(); goToProduct(); }}>
+          {compareAtPrice ? (
+            <div className="price-row">
+              <s className="old-price">PKR {compareAtPrice}</s>
+              <span className="new-price">PKR {price}</span>
+              <span className="sale-badge">
+                -{Math.round(((compareAtPrice - price) / compareAtPrice) * 100)}
+                %
+              </span>
+            </div>
+          ) : (
+            <p>PKR {price}</p>
+          )}
+          <button
+            className="cart-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              goToProduct();
+            }}
+          >
             <ShoppingCart size={20} />
           </button>
         </div>

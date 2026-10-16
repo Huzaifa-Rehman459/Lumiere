@@ -119,7 +119,9 @@ export default function Products() {
 
     for (let i = 0; i < newFiles.length; i += UPLOAD_CHUNK) {
       const form = new FormData();
-      newFiles.slice(i, i + UPLOAD_CHUNK).forEach((f) => form.append("images", f));
+      newFiles
+        .slice(i, i + UPLOAD_CHUNK)
+        .forEach((f) => form.append("images", f));
       try {
         await apiRequest(`/products/${saved._id}/images`, {
           method: "POST",
@@ -219,7 +221,17 @@ export default function Products() {
         {item.isNewArrival && <span className="prod-tag">New</span>}
       </div>,
       item.category?.name ?? "—",
-      money(item.price),
+      item.compareAtPrice ? (
+        <div>
+          <s style={{ color: "#a99b93", fontSize: "11px" }}>
+            {money(item.compareAtPrice)}
+          </s>
+          <br />
+          {money(item.price)}
+        </div>
+      ) : (
+        money(item.price)
+      ),
       item.stock,
       <StatusBadge status={stockStatus(item.stock)} />,
       <div className="row-actions">
@@ -269,7 +281,15 @@ export default function Products() {
         ) : (
           <>
             <DataTable
-              columns={["Image", "Product", "Category", "Price", "Stock", "Status", "Actions"]}
+              columns={[
+                "Image",
+                "Product",
+                "Category",
+                "Price",
+                "Stock",
+                "Status",
+                "Actions",
+              ]}
               rows={rows}
             />
             {pages > 1 && (

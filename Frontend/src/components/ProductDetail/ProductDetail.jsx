@@ -110,12 +110,12 @@ export default function ProductDetail() {
     let cancelled = false;
 
     apiRequest(
-      `/products?category=${product.category.slug}&limit=5&sort=newest`
+      `/products?category=${product.category.slug}&limit=5&sort=newest`,
     )
       .then((data) => {
         if (cancelled) return;
         setRelated(
-          data.products.filter((p) => p._id !== product._id).slice(0, 4)
+          data.products.filter((p) => p._id !== product._id).slice(0, 4),
         );
       })
       .catch(() => {
@@ -224,8 +224,23 @@ export default function ProductDetail() {
           <h1 className="pd-info__title">{product.name}</h1>
           <StarRating value={product.rating} count={product.numReviews} />
 
-          <p className="pd-info__price">PKR {product.price.toFixed(2)}</p>
-
+          {product.compareAtPrice ? (
+            <div className="pd-price-row">
+              <s className="pd-old-price">PKR {product.compareAtPrice}</s>
+              <span className="pd-info__price">PKR {product.price}</span>
+              <span className="pd-sale-badge">
+                -
+                {Math.round(
+                  ((product.compareAtPrice - product.price) /
+                    product.compareAtPrice) *
+                    100,
+                )}
+                %
+              </span>
+            </div>
+          ) : (
+            <p className="pd-info__price">${product.price}</p>
+          )}
           <p className="pd-info__description">{product.description}</p>
 
           {product.colors.length > 0 && (

@@ -41,6 +41,9 @@ export default function ProductModal({
   const [colors, setColors] = useState(
     (initial?.colors ?? []).map((c) => ({ name: c.name, hex: c.hex })),
   );
+  const [compareAtPrice, setCompareAtPrice] = useState(
+    initial?.compareAtPrice != null ? String(initial.compareAtPrice) : "",
+  );
   const [removedIds, setRemovedIds] = useState([]);
   const [newFiles, setNewFiles] = useState([]);
   const [error, setError] = useState("");
@@ -135,6 +138,14 @@ export default function ProductModal({
     if (!form.name.trim()) return "Product name is required.";
     if (!form.description.trim()) return "Description is required.";
 
+    if (compareAtPrice.trim() !== "") {
+      const cap = Number(compareAtPrice);
+      if (!Number.isFinite(cap) || cap < 0)
+        return "Compare-at price must be a valid number.";
+      if (cap <= Number(form.price))
+        return "Compare-at price must be higher than the price.";
+    }
+
     const price = Number(form.price);
     if (form.price.trim() === "" || !Number.isFinite(price) || price < 0) {
       return "Enter a valid price (0 or more).";
@@ -152,7 +163,8 @@ export default function ProductModal({
 
     const names = colors.map((c) => c.name.trim().toLowerCase());
     if (names.some((n) => !n)) return "Every color needs a name.";
-    if (new Set(names).size !== names.length) return "Two colors have the same name.";
+    if (new Set(names).size !== names.length)
+      return "Two colors have the same name.";
 
     return "";
   }
@@ -178,6 +190,7 @@ export default function ProductModal({
           colors: colors.map((c) => ({ name: c.name.trim(), hex: c.hex })),
           isBestSeller: form.isBestSeller,
           isNewArrival: form.isNewArrival,
+          compareAtPrice: compareAtPrice.trim() === "" ? null : Number(compareAtPrice),
         },
         newFiles.map((n) => n.file),
         removedIds,
@@ -194,7 +207,12 @@ export default function ProductModal({
       <div className="entity-modal product-modal">
         <div className="entity-modal-head">
           <h2>{editing ? "Edit" : "Add"} Product</h2>
-          <button type="button" className="bare-icon" onClick={onClose} disabled={saving}>
+          <button
+            type="button"
+            className="bare-icon"
+            onClick={onClose}
+            disabled={saving}
+          >
             <X />
           </button>
         </div>
@@ -207,7 +225,11 @@ export default function ProductModal({
 
           <label>
             Description
-            <textarea rows={3} value={form.description} onChange={setText("description")} />
+            <textarea
+              rows={3}
+              value={form.description}
+              onChange={setText("description")}
+            />
           </label>
 
           <div className="row-3">
@@ -232,6 +254,17 @@ export default function ProductModal({
               />
             </label>
             <label>
+              Compare-at price (optional)
+              <input
+                type="number"
+                min="0"
+                step="0.01"
+                value={compareAtPrice}
+                onChange={(e) => setCompareAtPrice(e.target.value)}
+                placeholder="Leave blank for no discount"
+              />
+            </label>
+            <label>
               Category
               <select value={form.category} onChange={setText("category")}>
                 <option value="">Select...</option>
@@ -244,7 +277,9 @@ export default function ProductModal({
             </label>
           </div>
           {categoriesError && (
-            <p className="modal-error">Could not load categories: {categoriesError}</p>
+            <p className="modal-error">
+              Could not load categories: {categoriesError}
+            </p>
           )}
           {!categoriesError && categories.length === 0 && !editing && (
             <p className="modal-hint">
@@ -267,7 +302,9 @@ export default function ProductModal({
                 </button>
               ))}
             </div>
-            <p className="modal-hint">Leave empty for products without sizes, like bags.</p>
+            <p className="modal-hint">
+              Leave empty for products without sizes, like bags.
+            </p>
           </div>
 
           <div className="field-group">
@@ -280,7 +317,10 @@ export default function ProductModal({
                   className="chip"
                   onClick={() => addPreset(preset)}
                 >
-                  <span className="chip-dot" style={{ background: preset.hex }} />
+                  <span
+                    className="chip-dot"
+                    style={{ background: preset.hex }}
+                  />
                   {preset.name}
                 </button>
               ))}
@@ -289,7 +329,8 @@ export default function ProductModal({
               </button>
             </div>
             <p className="modal-hint">
-              Use the quick-add names so the store's color filter finds this product.
+              Use the quick-add names so the store's color filter finds this
+              product.
             </p>
 
             {colors.map((color, i) => (
@@ -305,7 +346,11 @@ export default function ProductModal({
                   onChange={(e) => updateColor(i, { name: e.target.value })}
                   placeholder="Color name"
                 />
-                <button type="button" title="Remove color" onClick={() => removeColor(i)}>
+                <button
+                  type="button"
+                  title="Remove color"
+                  onClick={() => removeColor(i)}
+                >
                   <X size={14} />
                 </button>
               </div>
@@ -314,7 +359,8 @@ export default function ProductModal({
 
           <div className="field-group">
             <span className="field-label">
-              Images ({totalImages}/{MAX_IMAGES}) — the first one is the main photo
+              Images ({totalImages}/{MAX_IMAGES}) — the first one is the main
+              photo
             </span>
             <div className="img-grid">
               {savedImages.map((img, i) => (
@@ -391,7 +437,12 @@ export default function ProductModal({
           {error && <p className="modal-error">{error}</p>}
 
           <div className="entity-actions">
-            <button type="button" className="btn btn-light" onClick={onClose} disabled={saving}>
+            <button
+              type="button"
+              className="btn btn-light"
+              onClick={onClose}
+              disabled={saving}
+            >
               Cancel
             </button>
             <button className="btn btn-primary" disabled={saving}>

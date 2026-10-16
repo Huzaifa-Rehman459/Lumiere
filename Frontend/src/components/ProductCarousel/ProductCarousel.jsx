@@ -22,6 +22,7 @@ const ProductCarousel = ({ title, viewAllLink, products }) => {
               image={item.images[0]?.url}
               name={item.name}
               price={item.price}
+              compareAtPrice={item.compareAtPrice}
             />
           </div>
         ))}
