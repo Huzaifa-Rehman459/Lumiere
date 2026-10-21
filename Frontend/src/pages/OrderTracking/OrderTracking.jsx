@@ -104,12 +104,12 @@ const OrderTracking = () => {
                     <p>{item.name}</p>
                     <span>Qty {item.quantity}</span>
                   </div>
-                  <b>${item.lineTotal.toFixed(2)}</b>
+                  <b>PKR {item.lineTotal.toFixed(2)}</b>
                 </div>
               ))}
               <div className="tracking-item tracking-total">
                 <span>Total</span>
-                <b>${order.total.toFixed(2)}</b>
+                <b>PKR {order.total.toFixed(2)}</b>
               </div>
             </div>
           </div>
