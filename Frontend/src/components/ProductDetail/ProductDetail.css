@@ -480,5 +480,7 @@
 
   .pd-add-to-cart {
     width: 100%;
+    flex: none;
+    min-height: 46px;
   }
 }
