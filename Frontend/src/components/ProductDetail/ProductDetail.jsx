@@ -239,7 +239,7 @@ export default function ProductDetail() {
               </span>
             </div>
           ) : (
-            <p className="pd-info__price">${product.price}</p>
+            <p className="pd-info__price">PKR {product.price}</p>
           )}
           <p className="pd-info__description">{product.description}</p>
 
