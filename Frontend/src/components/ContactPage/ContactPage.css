@@ -2,138 +2,165 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
-  justify-content: space-between;
-  padding: 3rem;
-  gap: 2rem;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 2rem 3rem 4rem;
   flex-wrap: wrap;
 }
-.contact-page .contact-left {
-  background-color: #ebe5e5;
+
+.contact-left {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 2rem;
-  width: 30%;
-  border-radius: 5px;
+  padding: 2.2rem;
+  width: 340px;
+  background-color: var(--blush-light);
+  border-radius: 8px;
 }
+
 .contact-left h1 {
   font-family: var(--play-fair);
-  color: var(--black);
-  font-size: 2rem;
-}
-.contact-left .info-details {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-.contact-left .info-box {
-  display: flex;
-  gap: 1.5rem;
-  font-family: var(--inter);
-}
-.info-box .info-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-.info-text h3 {
-  color: var(--text);
-  font-size: 1rem;
-}
-.info-text span {
-  color: var(--gray);
-  font-size: 0.8rem;
   font-weight: 500;
+  color: var(--black);
+  font-size: 1.9rem;
 }
-.contact-page .contact-right {
+
+.info-details {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  border: 1px solid var(--border);
-  padding: 2rem;
-  width: 60%;
-  border-radius: 5px;
+  gap: 1.8rem;
 }
+
+.info-box {
+  display: flex;
+  gap: 1.1rem;
+  color: var(--black);
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.info-text h3 {
+  font-family: var(--inter);
+  font-size: 0.92rem;
+  color: var(--black);
+}
+
+.info-text span {
+  font-family: var(--inter);
+  color: var(--gray);
+  font-size: 0.82rem;
+  line-height: 1.4rem;
+}
+
+.contact-right {
+  flex: 1;
+  min-width: 320px;
+  max-width: 600px;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2.2rem;
+}
+
 .contact-right h2 {
   font-family: var(--play-fair);
+  font-weight: 500;
   color: var(--black);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 1.4rem;
 }
+
 .contact-right form {
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
-  height: fit-content;
+  gap: 1.2rem;
 }
-form .input-box {
+
+.input-box {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-form .input-box label {
+
+.input-box label {
   color: var(--text);
   font-weight: 500;
   font-size: 0.8rem;
   font-family: var(--inter);
 }
-form .input-box input {
-  padding: 0.7rem;
-  outline: none;
+
+.input-box input,
+.input-box textarea {
+  padding: 0.75rem 0.9rem;
   border: 1px solid var(--border);
   border-radius: 5px;
-}
-form button {
-  cursor: pointer;
-  background-color: var(--text);
-  border: none;
-  outline: none;
-  padding: 0.6rem;
-  width: 30%;
-  color: var(--white);
   font-family: var(--inter);
-  font-weight: 400;
-  border-radius: 5px;
+  font-size: 0.9rem;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.input-box textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.input-box input:focus,
+.input-box textarea:focus {
+  outline: none;
+  border-color: var(--blush);
+  box-shadow: 0 0 0 3px var(--blush-light);
+}
+
+.contact-right form button {
+  width: fit-content;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 0.6rem;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  transition: all 0.5s ease;
+  background-color: var(--black);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 5px;
+  font-family: var(--inter);
+  font-weight: 500;
   font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  transition: background-color 0.3s ease;
 }
-form button:hover {
-  transform: translateY(5px);
+
+.contact-right form button:hover {
+  background-color: var(--blush);
+  color: var(--black);
 }
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .contact-page {
-    padding: 2rem;
+    padding: 1.5rem 1.6rem 3rem;
   }
-  .contact-page .contact-left,
-  .contact-page .contact-right {
+  .contact-left {
     width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .contact-page {
-    padding: 1.2rem;
-    gap: 1.2rem;
-  }
-  .contact-page .contact-left,
-  .contact-page .contact-right {
-    padding: 1.3rem;
+  .contact-left,
+  .contact-right {
+    padding: 1.4rem;
   }
   .contact-left h1 {
     font-size: 1.5rem;
   }
-  .contact-right h2 {
-    font-size: 1.2rem;
-  }
-  form button {
+  .contact-right form button {
     width: 100%;
-    padding: 0.8rem;
+    justify-content: center;
   }
 }

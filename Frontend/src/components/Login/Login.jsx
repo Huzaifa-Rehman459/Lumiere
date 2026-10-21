@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import loginImg from "../../assets/pexels-dhanno-25184995.jpg";
 import { apiRequest } from "../../api/client";
 import { useAuth } from "../../context/AuthContext";
 
@@ -35,18 +34,17 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-left">
-        <div className="login-left-content">
-          <h1>Lumière</h1>
-          <div className="welcome-text">
-            <h1>Welcome Back</h1>
+    <div className="auth-page">
+      <div className="auth-card">
+        <div className="auth-form-side">
+          <h1 className="auth-brand">Lumière</h1>
+          <div className="auth-heading">
+            <h2>Welcome back</h2>
             <p>
-              Login to your account to continue shopping
-              <br />
-              and get the best deals.
+              Login to continue shopping and pick up right where you left off.
             </p>
           </div>
+
           <form onSubmit={handleSubmit}>
             <div className="input-box">
               <label>Email Address</label>
@@ -72,33 +70,42 @@ const Login = () => {
             {error && <p className="form-error">{error}</p>}
 
             <div className="forgot-box">
-              <div className="check-box">
+              <label className="check-box">
                 <input type="checkbox" />
                 <span>Remember me</span>
-              </div>
+              </label>
               <a href="">Forgot Password?</a>
             </div>
+
             <button type="submit" disabled={submitting}>
               {submitting ? "Logging in..." : "Login"}
             </button>
           </form>
+
           <div className="seprator">
-            <span>___________</span>
+            <span />
             <p>Or continue with</p>
-            <span>___________</span>
+            <span />
           </div>
+
           <div className="social-buttons">
             <button type="button">Google</button>
             <button type="button">Facebook</button>
           </div>
+
           <div className="signup-box">
-            <span>Dont have an account?</span>
+            <span>Don't have an account?</span>
             <Link to="/SignUp">Sign Up</Link>
           </div>
         </div>
-      </div>
-      <div className="login-right">
-        <img src={loginImg} alt="Login" />
+
+        <div className="auth-panel">
+          <span className="auth-panel-mark">“</span>
+          <p className="auth-panel-quote">
+            Pieces that feel like they were already yours.
+          </p>
+          <p className="auth-panel-sub">Welcome back to Lumière.</p>
+        </div>
       </div>
     </div>
   );

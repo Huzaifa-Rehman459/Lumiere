@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Truck } from "lucide-react";
 import { apiRequest } from "../../api/client";
 import "./OrderTracking.css";
 
-const STEPS = ["processing", "shipped", "delivered"];
+const STEPS = [
+  { key: "processing", label: "Processing" },
+  { key: "shipped", label: "Shipped" },
+  { key: "delivered", label: "Delivered" },
+];
 
 const OrderTracking = () => {
   const [searchParams] = useSearchParams();
-  const [orderNumber, setOrderNumber] = useState(searchParams.get("order") || "");
+  const [orderNumber, setOrderNumber] = useState(
+    searchParams.get("order") || "",
+  );
   const [order, setOrder] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,18 +34,20 @@ const OrderTracking = () => {
     }
   };
 
-  // Auto-track if we arrived with ?order=... in the URL (from Checkout)
   useEffect(() => {
     if (searchParams.get("order")) handleTrack();
   }, []);
 
-  const stepIndex = order ? STEPS.indexOf(order.status) : -1;
+  const stepIndex = order ? STEPS.findIndex((s) => s.key === order.status) : -1;
 
   return (
     <div className="tracking-page">
-      <div className="tracking-left">
-        <h1>Order Tracking</h1>
-        <p>Enter your order number to track your package.</p>
+      <div className="tracking-card">
+        <h1>Track Your Order</h1>
+        <p className="tracking-sub">
+          Enter your order number to see where it's at.
+        </p>
+
         <form onSubmit={handleTrack} className="tracking-form">
           <input
             placeholder="e.g. LM-8F3K2A1"
@@ -48,7 +55,7 @@ const OrderTracking = () => {
             onChange={(e) => setOrderNumber(e.target.value)}
           />
           <button type="submit" disabled={loading}>
-            {loading ? "Searching..." : "Track Order"}
+            {loading ? "Searching..." : "Track"}
           </button>
         </form>
 
@@ -56,23 +63,33 @@ const OrderTracking = () => {
 
         {order && (
           <div className="tracking-result">
-            <h2>Order {order.orderNumber}</h2>
-            <p className="tracking-date">
-              Placed on {new Date(order.createdAt).toLocaleDateString()}
-            </p>
+            <div className="tracking-result-head">
+              <h2>Order {order.orderNumber}</h2>
+              <span>
+                Placed {new Date(order.createdAt).toLocaleDateString()}
+              </span>
+            </div>
 
             {order.status === "cancelled" ? (
               <p className="tracking-cancelled">This order was cancelled.</p>
             ) : (
-              <div className="tracking-steps">
+              <div className="tracking-progress">
                 {STEPS.map((step, i) => (
-                  <div
-                    key={step}
-                    className={`tracking-step ${i <= stepIndex ? "is-done" : ""}`}
-                  >
-                    <span className="tracking-dot" />
-                    <span className="tracking-label">
-                      {step.charAt(0).toUpperCase() + step.slice(1)}
+                  <div className="tracking-progress-step" key={step.key}>
+                    <div className="tracking-progress-track">
+                      <span
+                        className={`tracking-dot ${i <= stepIndex ? "is-done" : ""}`}
+                      />
+                      {i < STEPS.length - 1 && (
+                        <span
+                          className={`tracking-connector ${i < stepIndex ? "is-done" : ""}`}
+                        />
+                      )}
+                    </div>
+                    <span
+                      className={`tracking-step-label ${i <= stepIndex ? "is-done" : ""}`}
+                    >
+                      {step.label}
                     </span>
                   </div>
                 ))}
@@ -82,20 +99,21 @@ const OrderTracking = () => {
             <div className="tracking-items">
               {order.items.map((item, i) => (
                 <div className="tracking-item" key={i}>
-                  <span>{item.name} × {item.quantity}</span>
-                  <span>PKR {item.lineTotal.toFixed(2)}</span>
+                  {item.image && <img src={item.image} alt="" />}
+                  <div className="tracking-item-info">
+                    <p>{item.name}</p>
+                    <span>Qty {item.quantity}</span>
+                  </div>
+                  <b>${item.lineTotal.toFixed(2)}</b>
                 </div>
               ))}
               <div className="tracking-item tracking-total">
                 <span>Total</span>
-                <span>PKR {order.total.toFixed(2)}</span>
+                <b>${order.total.toFixed(2)}</b>
               </div>
             </div>
           </div>
         )}
-      </div>
-      <div className="tracking-right">
-        <Truck size={160} strokeWidth={1} />
       </div>
     </div>
   );

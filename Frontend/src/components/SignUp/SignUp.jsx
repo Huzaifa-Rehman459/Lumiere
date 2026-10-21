@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./SignUp.css";
 import { Link, useNavigate } from "react-router-dom";
-import signUpImg from "../../assets/pexels-dhanno-25184951.jpg";
 import { apiRequest } from "../../api/client";
 import { useAuth } from "../../context/AuthContext";
 
@@ -27,7 +26,7 @@ const SignUp = () => {
       });
 
       login(data.token, data.user);
-      navigate("/"); // signup always creates a normal user, never an admin
+      navigate("/");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -36,18 +35,17 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup-page">
-      <div className="signup-left">
-        <div className="signup-left-content">
-          <h1>Lumière</h1>
-          <div className="welcome-text">
-            <h1>Create Your Account</h1>
+    <div className="auth-page">
+      <div className="auth-card">
+        <div className="auth-form-side">
+          <h1 className="auth-brand">Lumière</h1>
+          <div className="auth-heading">
+            <h2>Create your account</h2>
             <p>
-              Join us and get access to exclusive offers,
-              <br />
-              new articles and more.
+              Join us for early access to new arrivals and member-only pricing.
             </p>
           </div>
+
           <form onSubmit={handleSubmit}>
             <div className="input-box">
               <label>Full Name</label>
@@ -86,23 +84,31 @@ const SignUp = () => {
               {submitting ? "Creating account..." : "Sign Up"}
             </button>
           </form>
+
           <div className="seprator">
-            <span>___________</span>
+            <span />
             <p>Or continue with</p>
-            <span>___________</span>
+            <span />
           </div>
+
           <div className="social-buttons">
             <button type="button">Google</button>
             <button type="button">Facebook</button>
           </div>
-          <div className="login-box">
+
+          <div className="signup-box">
             <span>Already have an account?</span>
             <Link to="/Login">Login</Link>
           </div>
         </div>
-      </div>
-      <div className="signup-right">
-        <img src={signUpImg} alt="Sign Up" />
+
+        <div className="auth-panel">
+          <span className="auth-panel-mark">“</span>
+          <p className="auth-panel-quote">
+            Fewer, better pieces — made to actually live in.
+          </p>
+          <p className="auth-panel-sub">Join Lumière today.</p>
+        </div>
       </div>
     </div>
   );

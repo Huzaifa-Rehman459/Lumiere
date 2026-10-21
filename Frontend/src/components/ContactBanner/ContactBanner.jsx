@@ -1,15 +1,16 @@
-import React from 'react'
-import "./ContactBanner.css"
+import "./ContactBanner.css";
 
 const ContactBanner = () => {
   return (
-    <div className='contact-banner'>
-      <div className="banner-content">
-        <h1>Get in touch</h1>
-        <p>We'd love to hear from you. Whether you have a question<br></br>about an order, our collections, or anything else, we're here to help.</p>
-      </div>
+    <div className="page-banner">
+      <span>We'd Love to Hear From You</span>
+      <h1>Get in Touch</h1>
+      <p>
+        Whether it's about an order, our collections, or anything else — we're
+        here to help.
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default ContactBanner
+export default ContactBanner;

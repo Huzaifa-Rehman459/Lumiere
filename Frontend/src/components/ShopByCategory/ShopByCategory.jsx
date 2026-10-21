@@ -30,34 +30,58 @@ const ShopByCategory = () => {
   }, []);
 
   if (loading) return <p className="category-status">Loading categories...</p>;
-  if (error) return <p className="category-status category-status--error">{error}</p>;
+  if (error)
+    return <p className="category-status category-status--error">{error}</p>;
   if (categories.length === 0) {
     return <p className="category-status">No categories yet.</p>;
   }
 
+  const [featured, ...rest] = categories;
+
   return (
     <div className="shop-category">
-      <div className="category-header">
-        <h2>Shop By Category</h2>
-        <p>Explore our top categories and find your next favorite piece.</p>
-      </div>
+      <Link to={`/shop/${featured.slug}`} className="category-featured">
+        <div className="category-featured-image">
+          <img src={featured.image?.url || fallbackImg} alt={featured.name} />
+        </div>
+        <div className="category-featured-info">
+          <span>Featured</span>
+          <h2>{featured.name}</h2>
+          <p>
+            {featured.description ||
+              `Explore our ${featured.name.toLowerCase()} collection.`}
+          </p>
+          <span className="category-featured-link">
+            Shop {featured.name} <ArrowRight size={16} />
+          </span>
+        </div>
+      </Link>
 
-      <div className="category-grid">
-        {categories.map((item) => (
-          <div className="category-card" key={item._id}>
-            <Link to={`/shop/${item.slug}`} className="category-image">
-              <img src={item.image?.url || fallbackImg} alt={item.name} />
+      {rest.length > 0 && (
+        <div className="category-grid">
+          {rest.map((item) => (
+            <Link
+              to={`/shop/${item.slug}`}
+              className="category-card"
+              key={item._id}
+            >
+              <div className="category-image">
+                <img src={item.image?.url || fallbackImg} alt={item.name} />
+              </div>
+              <div className="category-info">
+                <h3>{item.name}</h3>
+                <p>
+                  {item.description ||
+                    `Shop our ${item.name.toLowerCase()} collection.`}
+                </p>
+                <span className="category-link">
+                  Shop {item.name} <ArrowRight size={16} />
+                </span>
+              </div>
             </Link>
-            <div className="category-info">
-              <h3>{item.name}</h3>
-              <p>{item.description || `Shop our ${item.name.toLowerCase()} collection.`}</p>
-              <Link to={`/shop/${item.slug}`}>
-                Shop {item.name} <ArrowRight size={16} />
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
