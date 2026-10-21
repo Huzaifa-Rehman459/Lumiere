@@ -130,7 +130,7 @@ const Checkout = () => {
                     {item.size || item.color ? " · " : ""}Qty {item.quantity}
                   </span>
                 </div>
-                <b>${item.lineTotal.toFixed(2)}</b>
+                <b>PKR {item.lineTotal.toFixed(2)}</b>
               </div>
             ))}
           </div>
@@ -138,17 +138,17 @@ const Checkout = () => {
           <div className="checkout-totals">
             <div className="checkout-line">
               <span>Subtotal</span>
-              <span>${cart.subtotal.toFixed(2)}</span>
+              <span>PKR {cart.subtotal.toFixed(2)}</span>
             </div>
             <div className="checkout-line">
               <span>Shipping</span>
               <span>
-                {cart.shipping === 0 ? "Free" : `$${cart.shipping.toFixed(2)}`}
+                {cart.shipping === 0 ? "Free" : `PKR ${cart.shipping.toFixed(2)}`}
               </span>
             </div>
             <div className="checkout-line checkout-total">
               <span>Total</span>
-              <span>${cart.total.toFixed(2)}</span>
+              <span>PKR {cart.total.toFixed(2)}</span>
             </div>
           </div>
         </div>
